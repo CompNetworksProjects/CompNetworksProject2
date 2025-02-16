@@ -1,0 +1,24 @@
+const admin = require("./firebaseAdmin");
+
+exports.handler = async (event) => {
+	if(event.httpMethod !== "POST") {
+		return { statusCode: 405, body: "Method Not Allowed" };
+}
+
+try {
+	const { email, password } = JSON.parse(event.body);
+
+if(!email || !password) {
+	return { statusCode: 400, body: JSON.stringify({ error: Email and password are required."}) };
+}
+
+const userRecord = await admin.auth().getUserByEmail(email);
+
+return {
+	statusCode: 200,
+	body: JSON.stringify({ uid: userRecord.uid, email: userRecord.email, message: "Login successful!"})
+	};
+} catch (error) {
+	return { statusCode: 400, body: JSON.stringify({ error: "Invalid login credentials." }) };
+	}
+};

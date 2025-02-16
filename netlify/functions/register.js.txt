@@ -1,0 +1,18 @@
+const admin = require("./firebaseAdmin");
+if(event.httpMethod !== "POST) {
+	return { statusCode: 405, body: "Method Not Allowed" };
+}
+
+const user = await admin.auth()createUser({
+	email,
+	password,
+});
+
+return {
+	statusCode: 200,
+	body: JSON.stringify({ uid: user.uid, email: user.email, message: "User registered successfully!" })
+};
+
+catch(error) {
+	return { statusCode: 400, body: JSON.stringify({ errir: error.message }) };
+}
