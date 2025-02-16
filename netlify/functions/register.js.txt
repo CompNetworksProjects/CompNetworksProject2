@@ -1,18 +1,32 @@
-const admin = require("./firebaseAdmin");
-if(event.httpMethod !== "POST) {
-	return { statusCode: 405, body: "Method Not Allowed" };
-}
+const { admin, db } = require("./firebaseAdmin");
 
-const user = await admin.auth()createUser({
-	email,
-	password,
-});
+exports.handler = async (event) => {
+    if (event.httpMethod !== "POST") {
+        return { statusCode: 405, body: "Method Not Allowed" };
+    }
 
-return {
-	statusCode: 200,
-	body: JSON.stringify({ uid: user.uid, email: user.email, message: "User registered successfully!" })
+    try {
+        const { email, password, username } = JSON.parse(event.body);
+
+        if (!email || !password || !username) {
+            return { statusCode: 400, body: JSON.stringify({ error: "Email, password, and username are required." }) };
+        }
+
+        // create user 
+        const user = await admin.auth().createUser({ email, password });
+
+        // store user info
+        await db.collection("users").doc(user.uid).set({
+            email: email,
+            username: username,
+            createdAt: admin.firestore.Timestamp.now()
+        });
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ uid: user.uid, email: user.email, username, message: "User registered and stored in Firestore!" })
+        };
+    } catch (error) {
+        return { statusCode: 400, body: JSON.stringify({ error: error.message }) };
+    }
 };
-
-catch(error) {
-	return { statusCode: 400, body: JSON.stringify({ errir: error.message }) };
-}
