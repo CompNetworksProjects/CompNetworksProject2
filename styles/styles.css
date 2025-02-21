@@ -9,7 +9,7 @@ body {
 }
 
 /*Login Screen */
-login {
+#Login {
     margin: 0;
     padding: 0;
     visibility: 1;
