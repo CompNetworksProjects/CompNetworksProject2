@@ -16,7 +16,7 @@ This project demonstrates setting up a website using GitHub Pages while applying
 - Security features, including **SSL/TLS encryption**, ensure secure communication.
 
 ## Website and Repository Links
-- **Live Website:** [GitHub Pages Link](https://bhaskartej.github.io/csc_computer_networks_proj1/)
+- **Live Website:** [Pending Live Site]
 - **GitHub Repository:** [Project Repository](https://github.com/Zkarobi/csc_computer_networks_proj1)
-- [View Full Report](Computer_Networking_Project_Report.pdf) 
+- [Pending Full Report] 
   
