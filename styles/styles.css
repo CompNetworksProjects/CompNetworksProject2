@@ -8,6 +8,14 @@ body {
     color: #333;
 }
 
+/*Login Screen */
+#login {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
 /* Navigation Bar */
 nav {
     background: rgba(255, 255, 255, 0.3);
