@@ -19,6 +19,7 @@ body {
 
 .wrapper {
     width: 420px;
+    visibility: 1;
     background: white;
     color: #eef5ff;
 }
