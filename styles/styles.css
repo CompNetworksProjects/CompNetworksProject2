@@ -9,7 +9,7 @@ body {
 }
 
 /*Login Screen */
-#login {
+login {
     margin: 0;
     padding: 0;
     visibility: 1;
@@ -19,7 +19,6 @@ body {
 
 .wrapper {
     width: 420px;
-    visibility: 1;
     background: white;
     color: #eef5ff;
 }
@@ -71,7 +70,6 @@ body {
 .remember-forgot a:hover {
     text-decoration: underline;
 }
-
 
 .wrapper .btn {
     width: 100%;
