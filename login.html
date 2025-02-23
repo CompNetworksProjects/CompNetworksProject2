@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Networking Project Login</title>
     <link rel="stylesheet" href="../styles/login.css">
+    <script defer src="login.js"></script>
 </head>
 
 <body>
@@ -15,16 +16,14 @@
         <div class="shape"></div>
     </div>
 
-    <form action="index.html">
+    <form id="login-form">
         <h3>Login</h3>
 
-        <label for="username"> Username
-            <input type="email" placeholder="Email or Phone" id="email" required>
-        </label>
+        <label for="email">Email</label>
+        <input type="email" placeholder="Enter your email" id="email" required>
 
-        <label for="username"> Password
-            <input type="password" placeholder="Password" id="password" required>
-        </label>
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter your password" id="password" required>
 
         <button type="submit">Log in</button>
 
@@ -33,5 +32,32 @@
         </div>
     </form>
 
+    <script>
+        document.getElementById("login-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("/.netlify/functions/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Login Successful");
+                    window.location.href = "index.html";
+                } else {
+                    alert(`Error: ${data.error}`);
+                }
+            } catch (error) {
+                alert("Login failed. Please try again.");
+            }
+        });
+    </script>
 
 </body>
+</html>
