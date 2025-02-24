@@ -1,5 +1,4 @@
-throw new Error("🔥 FORCED ERROR: Checking if Netlify reloads!");
-console.log("🔥 Checking environment variables...");
+console.log("🔥 Checking Firebase Environment Variables...");
 console.log("FIREBASE_PRIVATE_KEY:", process.env.FIREBASE_PRIVATE_KEY ? "Loaded" : "Not found");
 console.log("FIREBASE_PROJECT_ID:", process.env.FIREBASE_PROJECT_ID || "Not found");
 console.log("FIREBASE_CLIENT_EMAIL:", process.env.FIREBASE_CLIENT_EMAIL || "Not found");

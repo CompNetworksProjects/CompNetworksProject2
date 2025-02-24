@@ -1,5 +1,13 @@
 {
+  "name": "comp-networks-project",
+  "version": "1.0.0",
+  "description": "Networking project with Firebase and Netlify functions",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
     "firebase-admin": "^13.1.0"
   }
 }
