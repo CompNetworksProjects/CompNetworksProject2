@@ -1,63 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Networking Project Login</title>
-    <link rel="stylesheet" href="../styles/login.css">
-    <script defer src="login.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Networking Project Login</title>
+  <link rel="stylesheet" href="../styles/login.css" />
 </head>
-
 <body>
+  <form id="login-form">
+    <h3>Login</h3>
+    <label for="email">Email</label>
+    <input type="email" placeholder="Enter your email" id="email" required />
+    <label for="password">Password</label>
+    <input type="password" placeholder="Enter your password" id="password" required />
+    <button type="submit">Log in</button>
+    <p>Don't have an account? <a href="register.html">Create One</a></p>
+  </form>
 
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
+  <!-- Firebase SDK as a Module -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
-    <form id="login-form">
-        <h3>Login</h3>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCI8F2lSeLE3OlLUx-S3JXxzErg7O1-iNk",
+      authDomain: "networking-project-2-c2844.firebaseapp.com",
+      projectId: "networking-project-2-c2844",
+      storageBucket: "networking-project-2-c2844.appspot.com",
+      messagingSenderId: "578838120400",
+      appId: "1:578838120400:web:70ddf49c4fff2e78a11bd5"
+    };
 
-        <label for="email">Email</label>
-        <input type="email" placeholder="Enter your email" id="email" required>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-        <label for="password">Password</label>
-        <input type="password" placeholder="Enter your password" id="password" required>
+    // 🔥 Make Firebase available in DevTools
+    window.firebaseApp = app;
+    window.firebaseAuth = auth;
 
-        <button type="submit">Log in</button>
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-        <div class="form">
-            <p>Don't have an account? <a href="register.html">Create One</a></p>
-        </div>
-    </form>
-
-    <script>
-        document.getElementById("login-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-
-            try {
-                const response = await fetch("/.netlify/functions/login", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, password })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    alert("Login Successful");
-                    window.location.href = "index.html";
-                } else {
-                    alert(`Error: ${data.error}`);
-                }
-            } catch (error) {
-                alert("Login failed. Please try again.");
-            }
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert("Login Successful");
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          alert("Login error: " + error.message);
         });
-    </script>
-
+    });
+  </script>
 </body>
 </html>

@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Networking Project Create Account</title>
-    <link rel="stylesheet" href="../styles/register.css">
-    <script type="module" src="register.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Networking Project Create Account</title>
+  <link rel="stylesheet" href="../styles/register.css" />
 </head>
-
 <body>
+  <form id="register-form">
+    <h3>Create Account</h3>
+    <label for="username">Username</label>
+    <input type="text" placeholder="Enter your username" id="username" required />
+    <label for="email">Email</label>
+    <input type="email" placeholder="Enter your email" id="email" required />
+    <label for="password">Password</label>
+    <input type="password" placeholder="Enter your password" id="password" required />
+    <button type="submit">Create Account</button>
+    <p>Have an account? <a href="login.html">Login</a></p>
+  </form>
 
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
+  <!-- Firebase SDK as a Module -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
-    <form action="#">
-        <h3>Create Account</h3>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCI8F2lSeLE3OlLUx-S3JXxzErg7O1-iNk",
+      authDomain: "networking-project-2-c2844.firebaseapp.com",
+      projectId: "networking-project-2-c2844",
+      storageBucket: "networking-project-2-c2844.appspot.com",
+      messagingSenderId: "578838120400",
+      appId: "1:578838120400:web:70ddf49c4fff2e78a11bd5"
+    };
 
-        <label for="username"> Username
-            <input type="email" placeholder="Email or Phone" id="email" required>
-        </label>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-        <label for="username"> Password
-            <input type="password" placeholder="Password" id="password" required>
-        </label>
+   
+    window.firebaseApp = app;
+    window.firebaseAuth = auth;
 
-        <button type="submit">Create Account</button>
+    document.getElementById("register-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-        <div class="form">
-            <p>Have an account? <a href="login.html">Login</a></p>
-        </div>
-    </form>
-
-
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          return updateProfile(userCredential.user, { displayName: username });
+        })
+        .then(() => {
+          alert("Registration Successful");
+          window.location.href = "login.html";
+        })
+        .catch((error) => {
+          alert("Registration error: " + error.message);
+        });
+    });
+  </script>
 </body>
+</html>

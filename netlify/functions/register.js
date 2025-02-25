@@ -1,33 +1,27 @@
-const { admin, db } = require("./firebaseAdmin");
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+import { app } from "../../firebaseConfig.js"; 
+const auth = getAuth(app);
 
-exports.handler = async (event) => {
-    if (event.httpMethod !== "POST") {
-        return { statusCode: 405, body: "Method Not Allowed" };
-    }
+document.getElementById("register-form").addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    try {
-        const { email, password, username } = JSON.parse(event.body);
-        if (!email || !password || !username) {
-            return { statusCode: 400, body: JSON.stringify({ error: "Email, password, and username are required." }) };
-        }
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-        const user = await admin.auth().createUser({ email, password });
-        await db.collection("users").doc(user.uid).set({
-            email,
-            username,
-            createdAt: admin.firestore.Timestamp.now()
-        });
-
-        return {
-            statusCode: 200,
-            body: JSON.stringify({
-                uid: user.uid,
-                email: user.email,
-                username,
-                message: "User registered successfully!"
-            })
-        };
-    } catch (error) {
-        return { statusCode: 400, body: JSON.stringify({ error: error.message }) };
-    }
-};
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Registration successful
+      const user = userCredential.user;
+      // update the user's display name with the username
+      return updateProfile(user, { displayName: username });
+    })
+    .then(() => {
+      alert("Registration Successful");
+      // redirect to login page 
+      window.location.href = "login.html";
+    })
+    .catch((error) => {
+      alert("Registration error: " + error.message);
+    });
+});
