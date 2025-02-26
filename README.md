@@ -18,5 +18,5 @@ This project demonstrates setting up a website using GitHub Pages while applying
 ## Website and Repository Links
 - **Live Website:** [Live Site Here](https://computernetworksp2.netlify.app/login.html)
 - **GitHub Repository:** [Project Repository](https://github.com/CompNetworksProjects/CompNetworksProject2)
-- [Pending Full Report] 
+- [Pending Full Report](Computer Networks Project 2 Report (1).pdf) 
   
