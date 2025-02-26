@@ -37,6 +37,6 @@ This project focused on **securing a web application** by integrating authentica
 ---
 
 ## Deployment and Final Report
-🔗 **Live Site:** The application is deployed on **Netlify** and can be accessed [here](https://computernetworksp2.netlify.app/login.html)
-🔗 **GitHub Repository:** [Project Repo](https://github.com/CompNetworksProjects/CompNetworksProject2)
-🔗 **Final Report:** View full project report [here](https://github.com/CompNetworksProjects/CompNetworksProject2/blob/main/Computer%20Networks%20Project%202%20Report%20(1).pdf) 
+- 🔗 **Live Site:** The application is deployed on **Netlify** and can be accessed [here](https://computernetworksp2.netlify.app/login.html)
+- 🔗 **GitHub Repository:** [Project Repo](https://github.com/CompNetworksProjects/CompNetworksProject2)
+- 🔗 **Final Report:** View full project report [here](https://github.com/CompNetworksProjects/CompNetworksProject2/blob/main/Computer%20Networks%20Project%202%20Report%20(1).pdf) 
