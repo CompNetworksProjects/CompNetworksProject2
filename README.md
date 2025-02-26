@@ -16,7 +16,7 @@ This project demonstrates setting up a website using GitHub Pages while applying
 - Security features, including **SSL/TLS encryption**, ensure secure communication.
 
 ## Website and Repository Links
-- **Live Website:** [Pending Live Site]
+- **Live Website:** [Live Site Here](https://computernetworksp2.netlify.app/login.html)
 - **GitHub Repository:** [Project Repository](https://github.com/CompNetworksProjects/CompNetworksProject2)
 - [Pending Full Report] 
   
